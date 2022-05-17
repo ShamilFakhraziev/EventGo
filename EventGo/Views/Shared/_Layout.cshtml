@@ -27,6 +27,12 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="Create">Создать мероприятие</a>
                             </li>
                         }
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Управление ролями</a>
+                            </li>
+                        }
                     </ul>
                 </div>
                 @if (User.Identity.IsAuthenticated)

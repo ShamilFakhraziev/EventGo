@@ -1,0 +1,28 @@
+﻿@model List<User>
+@{
+    ViewData["Title"] = "Добавление организатора";
+}
+<h2>Список неподтвержденных организаторов</h2>
+<table class="table">
+    <tr><th>Имя пользователя</th><th>Электронная почта</th><th>Изменение роли</th></tr>
+    @foreach (var user in Model)
+    {
+
+        <tr>
+            <td>@user.UserName</td>
+            <td>
+                @user.Email
+
+            </td>
+            <td>
+                <form asp-controller="Admin" asp-action="AddOrganizer" asp-route-id="@user.Id" method="post">
+                    <button type="submit" class="btn btn-sm btn-success">
+                        Сделать организатором
+                    </button>
+                </form>
+            </td>
+
+        </tr>
+        <tr></tr>
+    }
+</table>

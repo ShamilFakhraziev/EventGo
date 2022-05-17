@@ -49,14 +49,18 @@ namespace EventGo.Database
             {
                 Id = "1",
                 UserName = "admin",
+                NormalizedUserName = "ADMIN",
                 Email = "admin@mail.ru",
+                NormalizedEmail = "ADMIN@MAIL.RU",
                 PasswordHash = new PasswordHasher<User>().HashPassword(null, "admin123")
             },
             new User
             {
                 Id = "3",
                 UserName = "alex",
+                NormalizedUserName = "ALEX",
                 Email = "alex@mail.ru",
+                NormalizedEmail = "ALEX@MAIL.RU",
                 Name = "Ivanov Alexander",
                 Address = "Санкт-Петербург, ул. Невский проспект, д 41, кв 3",
                 Balance = (decimal) 400.5,
@@ -66,13 +70,27 @@ namespace EventGo.Database
             {
                 Id = "2",
                 UserName = "planetarium",
-                Email = "planetarium.one@mail.ru",
+                NormalizedUserName = "PLANETARIUM",
+                Email = "planetarium@mail.ru",
+                NormalizedEmail = "PLANETARIUM@MAIL.RU",
                 Name = "Планетарий № 1",
                 Address = "наб. Обводного канала, 74Ц, Санкт-Петербург",
                 Balance = 0,
                 PasswordHash = new PasswordHasher<User>().HashPassword(null, "planetarium123")
+            },
+            new User
+            {
+                Id = "4",
+                UserName = "uncorg",
+                NormalizedUserName = "UNCORG",
+                Email = "uncorg@mail.ru",
+                NormalizedEmail = "UNCORG@MAIL.RU",
+                Name = "Непотвержденный организатор тестовый",
+                Address = "наб. Обводного канала, 74Ц, Санкт-Петербург",
+                Balance = 0,
+                PasswordHash = new PasswordHasher<User>().HashPassword(null, "uncorg123")
             }
-            ); ;;
+            );
             builder.Entity<IdentityRole>().HasData(
                 new IdentityRole
                 {
@@ -103,6 +121,11 @@ namespace EventGo.Database
                 {
                     RoleId = "2",
                     UserId = "2"
+                }, 
+                new IdentityUserRole<string>
+                {
+                    RoleId = "3",
+                    UserId = "4"
                 }
                 );
         }

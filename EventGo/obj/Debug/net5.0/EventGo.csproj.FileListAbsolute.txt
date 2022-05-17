@@ -79,4 +79,5 @@ C:\Users\Shamil\Documents\Курсовая\EventGo\EventGo\obj\Debug\net5.0\Razo
 C:\Users\Shamil\Documents\Курсовая\EventGo\EventGo\obj\Debug\net5.0\Razor\Views\Account\CashOut.cshtml.g.cs
 C:\Users\Shamil\Documents\Курсовая\EventGo\EventGo\bin\Debug\net5.0\xunit.abstractions.dll
 C:\Users\Shamil\Documents\Курсовая\EventGo\EventGo\bin\Debug\net5.0\xunit.core.dll
-C:\Users\Shamil\Documents\Курсовая\EventGo\EventGo\obj\Debug\net5.0\EventGo.csproj.AssemblyReference.cache
+C:\Users\Shamil\Documents\Курсовая\EventGo\EventGo\obj\Debug\net5.0\Razor\Views\Admin\AllUnconfimedOrganizers.cshtml.g.cs
+C:\Users\Shamil\Documents\Курсовая\EventGo\EventGo\obj\Debug\net5.0\Razor\Views\Admin\Index.cshtml.g.cs
