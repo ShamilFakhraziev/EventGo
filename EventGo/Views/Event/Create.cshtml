@@ -1,0 +1,53 @@
+﻿@model Event
+@{
+    ViewData["Title"] = "Создание мероприятия";
+}
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+<h2>Создание мероприятия</h2>
+<form method="post" asp-controller="Event" asp-action="Create" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label asp-for="Name"></label> <br />
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label asp-for="Description"></label> <br />
+        <textarea asp-for="Description" id="evDescription"></textarea>
+        <span asp-validation-for="Description"></span>
+    </div> 
+    <div>
+        <label asp-for="DateOfTheEvent"></label> <br />
+        <input type="date" asp-for="DateOfTheEvent" />
+        <span asp-validation-for="DateOfTheEvent"></span>
+    </div>
+     <div>
+        <label asp-for="Location"></label> <br />
+        <input type="text" asp-for="Location" />
+        <span asp-validation-for="Location"></span>
+    </div>
+    <div>
+        <label asp-for="NumberOfSeats"></label> <br />
+        <input type="number" asp-for="NumberOfSeats" />
+        <span asp-validation-for="NumberOfSeats"></span>
+    </div>
+    <div>
+        <label asp-for="Price"></label> <br />
+        <input type="number" asp-for="Price" />
+        <span asp-validation-for="Price"></span>
+    </div>
+    <div class="mt-2">
+        <label asp-for="Image"></label>
+        <input type="file" name="imagePath" id="imagePath" />
+    </div>
+    <div>
+        <input type="hidden" asp-for="UserId" value="@ViewBag.UserId" />
+    </div>
+    <input type="submit" value="Создать" class="btn btn-outline-success mt-3" />
+</form>
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        var editor = CKEDITOR.replace('evDescription')
+    }
+    );
+</script>

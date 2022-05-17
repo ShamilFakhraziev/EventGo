@@ -1,0 +1,27 @@
+﻿@model Login;
+@{
+    ViewData["Title"] = "Вход";
+}
+<h2>Вход</h2>
+<form method="post" asp-action="Login" asp-controller="Account">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label asp-for="UserName"></label> <br />
+        <input asp-for="UserName" />
+        <span asp-validation-for="UserName"></span>
+    </div>
+    <div>
+        <label asp-for="Password"></label> <br />
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <div>
+        <label class="p-0 m-0" asp-for="RememberMe"></label> <br />
+        <input class="" asp-for="RememberMe" />
+        <span asp-validation-for="RememberMe"></span>
+    </div>
+    <div class="mt-1">
+        <input type="submit" class="btn btn-success" value="Войти" />
+    </div>
+    <a class="mt-5" asp-action="Register" asp-controller="Account">Регистрация</a>
+</form>

@@ -1,0 +1,11 @@
+﻿@model User
+
+<div>
+    <p>Логин: @Model.UserName</p>
+    <p>Имя: @Model.Name</p>
+    <p>Email: @Model.Email</p>
+    <p>Телефон: @Model.PhoneNumber</p>
+    <p>Баланс: @Model.Balance рублей</p>
+    <a class="btn btn-outline-success btn-sm" asp-controller="Account" asp-action="MakeDeposit">Пополнить счет</a>
+    <a class="btn btn-outline-danger btn-sm ml-3" asp-controller="Account" asp-action="CashOut">Вывести средства со счета</a>
+</div> 

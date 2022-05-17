@@ -1,0 +1,32 @@
+﻿@model EventBuyTicket
+@{
+    ViewData["Title"] = Model.Event.Name;
+}
+<h2 class="h2" style="font-weight:200">@Model.Event.Name</h2>
+@if (Model.Event.Image != null)
+{
+    <img src="/images/@Model.Event.Image" class="float-left w-50 h-auto pr-3 pl-3" />
+}
+else
+{
+    <img src="/images/DefaultEvent.jpeg" class="card-img-top float-left w-50 h-auto pr-3 pb-3">
+}
+<p>Дата проведения: @Model.Event.DateOfTheEvent.ToShortDateString()</p>
+<p>Место проведения: @Model.Event.Location</p>
+@Html.Raw(Model.Event.Description)
+
+@if(Model.Event.NumberOfSeats == 0){
+    <p class="text-warning">Нет свободных мест!</p>
+}
+else {
+    if (Model.isPurchased == true)
+    {
+        <p class="text-info">Вы уже купили билет на это мероприятие!</p>
+    }
+    else {
+        <p>Количество мест: @Model.Event.NumberOfSeats</p>
+        <p>Цена билета: @Model.Event.Price рублей</p>
+        <p class="text-warning">Каждый пользователь может купить только один билет!</p>
+        <a class="btn btn-primary" asp-controller="Event" asp-action="BuyTicket" asp-route-id = "@Model.Event.Id">Купить</a>
+    }
+}
