@@ -24,7 +24,7 @@ namespace EventGo.ViewModels
         public string Password { get; set; }
 
 
-        [Required(ErrorMessage = "Введите пароль для потверждения")]
+        [Required(ErrorMessage = "Введите пароль для подтверждения")]
         [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         [DataType(DataType.Password)]
         [Display(Name = "Потвердите пароль")]
@@ -32,6 +32,10 @@ namespace EventGo.ViewModels
         
         [Display(Name="Адрес")]
         public string Address { get;set; }
+        
+        [Required(ErrorMessage = "Введите телефон")]
+        [Display(Name="Телефон")]
+        public string PhoneNumber { get;set; }
         
         [Display(Name = "Являетесь ли Вы организатором?")]
         public bool IsOrganizer { get; set; }

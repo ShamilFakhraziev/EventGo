@@ -31,6 +31,12 @@
         <span asp-validation-for="ConfrimPassword"></span>
     </div>
     <div>
+        <label asp-for="PhoneNumber"></label><br />
+        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" asp-for="PhoneNumber" />
+        <small>Формат: 123-456-7890</small>
+        <span asp-validation-for="PhoneNumber"></span>
+    </div>
+    <div>
         <label asp-for="Address"></label><br />
         <input asp-for="Address" />
         <span asp-validation-for="Address"></span>

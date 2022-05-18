@@ -14,19 +14,25 @@ else
 <p>Дата проведения: @Model.Event.DateOfTheEvent.ToShortDateString()</p>
 <p>Место проведения: @Model.Event.Location</p>
 @Html.Raw(Model.Event.Description)
-
-@if(Model.Event.NumberOfSeats == 0){
-    <p class="text-warning">Нет свободных мест!</p>
-}
-else {
-    if (Model.isPurchased == true)
-    {
-        <p class="text-info">Вы уже купили билет на это мероприятие!</p>
+@if(!User.IsInRole("organizer"))
+{
+    @if(Model.Event.NumberOfSeats == 0){
+        <p class="text-warning">Нет свободных мест!</p>
     }
     else {
-        <p>Количество мест: @Model.Event.NumberOfSeats</p>
-        <p>Цена билета: @Model.Event.Price рублей</p>
-        <p class="text-warning">Каждый пользователь может купить только один билет!</p>
-        <a class="btn btn-primary" asp-controller="Event" asp-action="BuyTicket" asp-route-id = "@Model.Event.Id">Купить</a>
+        if (Model.isPurchased == true)
+        {
+            <p class="text-info">Вы купили билет на это мероприятие!</p>
+        }
+        else {
+            <p>Количество мест: @Model.Event.NumberOfSeats</p>
+            <p>Цена билета: @Model.Event.Price рублей</p>
+            <p class="text-warning">Каждый пользователь может купить только один билет!</p>
+            <a class="btn btn-primary" asp-controller="Event" asp-action="BuyTicket" asp-route-id = "@Model.Event.Id">Купить</a>
+        }
     }
+}
+@if(User.IsInRole("organizer") && Model.isThisOrg)
+{
+    <a class="btn btn-danger" asp-controller="Event" asp-action="Delete" asp-route-id = "@Model.Event.Id">Удалить мероприятие</a>
 }

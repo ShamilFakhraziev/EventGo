@@ -24,10 +24,10 @@
                 }
                 <div class="card-body">
                     <h5 class="card-title" style="font-weight:400">@s.Event.Name</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Автор: @s.User.Email</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">@s.User.Name</h6>
 
                     <p class="card-text">Осталось мест: @s.Event.NumberOfSeats</p>
-                    <a asp-action="Read" asp-controller="Event" asp-route-id="@s.Event.Id" class="btn btn-primary">Смотреть</a>
+                    <a asp-action="Read" asp-controller="Event" asp-route-id="@s.Event.Id" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
             }

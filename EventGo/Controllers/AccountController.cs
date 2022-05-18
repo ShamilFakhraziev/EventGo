@@ -6,6 +6,7 @@ using EventGo.ViewModels;
 using EventGo.Database;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace EventGo.Controllers
 {
@@ -33,7 +34,7 @@ namespace EventGo.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { Name = model.Name,Address = model.Address, Email = model.Email, UserName = model.UserName };
+                var user = new User { Name = model.Name,Address = model.Address, Email = model.Email, UserName = model.UserName, PhoneNumber = model.PhoneNumber };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -91,7 +92,14 @@ namespace EventGo.Controllers
         public async Task<IActionResult> MyProfile()
         {
             User model = await userManager.GetUserAsync(User);
-            return View(model);
+            List<UserEvent> uevents = appDbContext.UserEvents.Where(e => e.UserId == model.Id).ToList();
+
+            List<Event> events = new List<Event>();
+            foreach (var uevent in uevents)
+            {
+                events.Add(appDbContext.Events.FirstOrDefault(e => e.Id == uevent.EventId));
+            }
+            return View(new MyProfileModel { User = model, Events = events});
         }
 
         [Authorize]

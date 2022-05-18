@@ -26,6 +26,7 @@ namespace EventGo.Controllers
             List<DisplayEvent> events = new List<DisplayEvent>();
             foreach(var e in dbContext.Events.ToList())
             {
+                if(e.NumberOfSeats > 0)
                 events.Add(new DisplayEvent { Event = e, User = dbContext.Users.FirstOrDefault(u=>u.Id==e.UserId)});
             }
             return View(events);

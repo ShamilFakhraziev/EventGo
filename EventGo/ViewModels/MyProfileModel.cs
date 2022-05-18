@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace EventGo.ViewModels
 {
-    public class EventBuyTicket
+    public class MyProfileModel
     {
-        public Event Event { get; set; }
-        public bool? isPurchased { get;set; }
-
-        public bool isThisOrg { get; set; }
-    }
+        public User User { get; set; }
+        public List<Event> Events { get; set; }
+     }
 }

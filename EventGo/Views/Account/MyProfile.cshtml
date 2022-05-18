@@ -1,11 +1,33 @@
-﻿@model User
+﻿@model MyProfileModel
 
 <div>
-    <p>Логин: @Model.UserName</p>
-    <p>Имя: @Model.Name</p>
-    <p>Email: @Model.Email</p>
-    <p>Телефон: @Model.PhoneNumber</p>
-    <p>Баланс: @Model.Balance рублей</p>
+    <p>Логин: @Model.User.UserName</p>
+    <p>Имя: @Model.User.Name</p>
+    <p>Email: @Model.User.Email</p>
+    <p>Телефон: @Model.User.PhoneNumber</p>
+    <p>Баланс: @Model.User.Balance рублей</p>
     <a class="btn btn-outline-success btn-sm" asp-controller="Account" asp-action="MakeDeposit">Пополнить счет</a>
     <a class="btn btn-outline-danger btn-sm ml-3" asp-controller="Account" asp-action="CashOut">Вывести средства со счета</a>
 </div> 
+@if(!User.IsInRole("organizer")){
+    <h2>Мои мероприятия</h2>
+    <table class="table mt-2">
+        <tr><th>Название</th><th>Место проведения</th><th>Дата проведения</th></tr>
+        @foreach (var ev in Model.Events)
+        {
+
+            <tr>
+                <td>@ev.Name</td>
+                <td>
+                    @ev.Location
+
+                </td>
+                <td>
+                   @ev.DateOfTheEvent.ToShortDateString()
+                </td>
+
+            </tr>
+            <tr></tr>
+        }
+    </table>
+}

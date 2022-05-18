@@ -26,7 +26,7 @@ namespace EventGo.Database
 
             builder.Entity<UserEvent>().HasKey(ue => new { ue.UserId ,ue.EventId });
             builder.Entity<Event>().HasKey(e => e.Id);
-            builder.Entity<Event>().HasData(new Event { Id = 1, Name = "Планетарий № 1", Description = "Это классное мероприятие", UserId = "2", DateOfTheEvent = DateTime.Now, Image = null, Location = "наб. Обводного канала, д. 74ц" });
+            builder.Entity<Event>().HasData(new Event { Id = 1, Name = "Планетарий № 1", Description = "Это классное мероприятие", UserId = "2", NumberOfSeats = 10, DateOfTheEvent = DateTime.Now, Image = null, Location = "наб. Обводного канала, д. 74ц" }) ;
 
             builder.Entity<User>().ToTable("Users", "dbo");
             builder.Entity<User>().Property(u => u.Balance).HasDefaultValue(0);

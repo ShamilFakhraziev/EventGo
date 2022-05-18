@@ -36,7 +36,7 @@ namespace EventGo.Controllers
             Event ev = db.Events.FirstOrDefault(e => e.Id == id);
             if(ev == null) return NotFound();
             
-            return View(new EventBuyTicket { Event = ev, isPurchased = isPurchased});
+            return View(new EventBuyTicket { Event = ev, isPurchased = isPurchased, isThisOrg = ev.UserId == user.Id});
         }
 
         [Authorize(Roles = "organizer")]
@@ -96,12 +96,38 @@ namespace EventGo.Controllers
                 else
                 {
                     user.Balance -= currentEvent.Price;
+                    db.Users.FirstOrDefault(u => u.Id == currentEvent.UserId).Balance += currentEvent.Price;
                     currentEvent.NumberOfSeats -= 1;
-                    db.UserEvents.Add(new UserEvent { UserId = user.Id, EventId = currentEvent.Id });
+                    db.UserEvents.Add(new UserEvent { UserId = user.Id, EventId = currentEvent.Id});
                 }   
             }
             db.SaveChanges();
             return Redirect($"/Event/Read/{id}");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var ev = db.Events.FirstOrDefault(e => e.Id == id);
+            if (ev == null) return BadRequest("Ошибка удаления, нет такого мероприятия");
+
+            var org = db.Users.FirstOrDefault(o => o.Id == ev.UserId);
+
+            decimal priceSum = 0;
+            List<UserEvent> userEvents = db.UserEvents.Where(ue=>ue.EventId == id).ToList();
+            priceSum = userEvents.Count * ev.Price;
+            if(org.Balance < priceSum) return BadRequest("Недостаточно баланса для возврата денег за билеты");
+            org.Balance -= priceSum;
+            foreach (var userEvent in userEvents)
+            {
+                var user = db.Users.FirstOrDefault(u => u.Id == userEvent.UserId);
+                user.Balance += ev.Price;
+                db.UserEvents.Remove(userEvent);
+            }
+
+            db.Remove(ev);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
