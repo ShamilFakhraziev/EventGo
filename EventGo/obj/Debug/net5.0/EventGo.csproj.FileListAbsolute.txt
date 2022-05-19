@@ -164,3 +164,4 @@ C:\Users\Shamil\Documents\тестовая папка\EventGo-master\EventGo-mas
 C:\Users\Shamil\Documents\тестовая папка\EventGo-master\EventGo-master\EventGo\obj\Debug\net5.0\ref\EventGo.dll
 C:\Users\Shamil\Documents\тестовая папка\EventGo-master\EventGo-master\EventGo\obj\Debug\net5.0\EventGo.pdb
 C:\Users\Shamil\Documents\тестовая папка\EventGo-master\EventGo-master\EventGo\obj\Debug\net5.0\EventGo.genruntimeconfig.cache
+C:\Users\Shamil\Documents\Курсовая\EventGo\EventGo\obj\Debug\net5.0\EventGo.csproj.AssemblyReference.cache
